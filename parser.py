@@ -8,7 +8,6 @@ from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 
-
 class ParserLolzChrome:
     def __init__(self, state = True) -> None:
         self.__ua  = fake_useragent.UserAgent()
@@ -88,8 +87,9 @@ class ParserLolzChrome:
                 )
         data["lastupd"] = str(now.strftime("%H:%M:%S"))
         with open("threadsdata/data.json", "w") as inf:
-            json.dump(data, inf, indent=4)     
-        time.sleep(random.randint(2, 3))    
+            json.dump(data, inf, indent=4)
+        inf.close()
+        self.__browser.close()    
 
 def getInfo():
     try:
@@ -113,7 +113,7 @@ def getInfo():
         return ("В базе нет записей")
 
 if __name__ == '__main__':
-    #name = ParserLolzChrome(False)
-    #name.getAllPages()
+    name = ParserLolzChrome(False)
+    name.getAllPages()
     print(getInfo())
     

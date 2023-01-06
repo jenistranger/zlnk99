@@ -26,7 +26,7 @@ async def mainjob():
 #асинх ф-ция шедла
 async def schedulDo():
     #раз в 10 минут
-    aioschedule.every(120).seconds.do(mainjob)
+    aioschedule.every(600).seconds.do(mainjob)
     #aioschedule.every().minute.do(doParsing)
     while True:
         await aioschedule.run_pending()
