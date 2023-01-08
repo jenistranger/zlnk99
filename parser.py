@@ -29,7 +29,7 @@ class ParserLolzChrome:
 
     def getFirstPage(self) -> str:
         time.sleep(2)
-        self.__browser.get("https://zelenka.guru/forums/contests/?order=post_date&direction=desc&prefix_id[]=131")
+        self.__browser.get("https://lolz.live/forums/contests/?order=post_date&direction=desc&prefix_id[]=131")
         time.sleep(3)
         lister = self.__browser.find_element(By.CLASS_NAME, "latestThreads").find_elements(By.CLASS_NAME, "discussionListItem")
         data = {}
@@ -55,7 +55,7 @@ class ParserLolzChrome:
         data = {}
         now = datetime.now()
         #url выводит только розыгрыши с тегом "Деньги"
-        self.__browser.get("https://zelenka.guru/forums/contests/?order=post_date&direction=desc&prefix_id[]=131")
+        self.__browser.get("https://lolz.live/forums/contests/?order=post_date&direction=desc&prefix_id[]=131")
         time.sleep(random.randint(1, 3))
         last_data = int(self.__browser.find_element(By.CLASS_NAME, "PageNav").get_attribute("data-last"))
         data["thread"] = []
@@ -71,7 +71,7 @@ class ParserLolzChrome:
             )
         for page in range(2, last_data+1):
             #data["thread"].clear()
-            self.__browser.get(f"https://zelenka.guru/forums/contests/page-{page}?prefix_id[0]=131&enabled=1&createTabButton=1")
+            self.__browser.get(f"https://lolz.live/forums/contests/page-{page}?prefix_id[0]=131&enabled=1&createTabButton=1")
             listofthreads = self.__browser.find_element(By.CLASS_NAME, "latestThreads").find_elements(By.CLASS_NAME, "discussionListItem")
             for threadx  in listofthreads:
                 moneystr = str(threadx.find_element(By.CLASS_NAME, "moneyContestWithValue").text)
